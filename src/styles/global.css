@@ -1,0 +1,136 @@
+/* src/styles/global.css */
+@font-face {
+  font-family: 'PixelFont';
+  src: url('../fonts/ProggyClean.ttf') format('truetype');
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PixelFont', monospace;
+  background-color: #0F0207;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+p {
+  color: white;
+  font-family: 'PixelFont', monospace;
+}
+
+h2 {
+  font-family: 'PixelFont', monospace;
+  color: white;
+}
+
+button {
+  border: solid 1px #260915;
+  background-color: #0F0207;
+  font-family: 'PixelFont', monospace;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 113px;
+  transition: background-color 0.4s;
+}
+
+button:hover {
+  background-color: #260915;
+}
+
+input {
+  border: solid 1px #260915;
+  /* То же самое, что и у кнопки */
+  background-color: #0F0207;
+  /* То же самое, что и у кнопки */
+  font-family: 'PixelFont', monospace;
+  /* Шрифт такой же, как у кнопки */
+  color: white;
+  /* Цвет текста такой же, как у кнопки */
+  cursor: text;
+  /* Курсор для текстового поля */
+  height: 15px;
+  /* Высота такая же, как у кнопки */
+  width: 100px;
+  /* Ширина такая же, как у кнопки */
+  padding: 5px;
+  /* Добавьте немного внутреннего отступа для удобства */
+  transition: background-color 0.4s;
+  /* Плавный переход для фона */
+}
+
+input:focus {
+  background-color: #260915;
+  /* Изменение фона при фокусе */
+  outline: none;
+  /* Убираем стандартный контур при фокусе */
+}
+
+.auth-container {
+  display: flex;
+  /* Используем Flexbox */
+  flex-direction: column;
+  /* Располагаем элементы в колонку */
+  justify-content: center;
+  /* Центрируем по вертикали */
+  align-items: center;
+  /* Центрируем по горизонтали */
+  height: 100vh;
+  /* Занимаем всю высоту экрана */
+  gap: 20px;
+  /* Отступ между элементами */
+}
+
+#form-auth {
+  display: flex;
+  /* Используем Flexbox для формы */
+  flex-direction: column;
+  /* Располагаем элементы в колонку */
+  gap: 10px;
+  /* Отступ между полями ввода */
+  opacity: 0;
+  /* Начальная непрозрачность */
+  transform: translateY(-20px);
+  /* Начальное смещение вверх */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  /* Плавный переход */
+}
+
+#form-auth.show {
+  opacity: 1;
+  /* Полная непрозрачность */
+  transform: translateY(0);
+  /* Возвращаем на место */
+}
+
+
+p {
+  cursor: pointer;
+  /* Указатель при наведении */
+  color: white;
+  /* Цвет текста */
+  transition: color 0.3s;
+  /* Плавный переход цвета */
+}
+
+p:hover {
+  color: #260915;
+  /* Изменение цвета при наведении */
+}
+
+.hide {
+  opacity: 1;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
