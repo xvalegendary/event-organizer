@@ -5,9 +5,9 @@ import '../styles/global.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Auth = () => {
-	const [isLogin, setIsLogin] = useState(true) // Состояние для переключения между входом и регистрацией
-	const [login, setLogin] = useState('') // Логин
-	const [email, setEmail] = useState('') // Email для регистрации
+	const [isLogin, setIsLogin] = useState(true) 
+	const [login, setLogin] = useState('') 
+	const [email, setEmail] = useState('') 
 	const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
@@ -18,7 +18,7 @@ const Auth = () => {
 			: 'http://localhost:8000/register'
 
 		try {
-			const payload = isLogin ? { login, password } : { login, email, password } // Добавлено поле email для регистрации
+			const payload = isLogin ? { login, password } : { login, email, password } 
 			const response = await axios.post(url, payload)
 			console.log(response.data)
 
@@ -42,7 +42,7 @@ const Auth = () => {
 					onChange={e => setLogin(e.target.value)}
 					required
 				/>
-				{!isLogin && ( // Поле для email отображается только при регистрации
+				{!isLogin && ( 
 					<input
 						type='email'
 						placeholder='Email'

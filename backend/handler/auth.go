@@ -32,15 +32,15 @@ func AuthHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // Подключаемся к базе данных SQLite
+    
     db, err := sql.Open("sqlite3", "./foo.db")
     if err != nil {
         http.Error(w, "Не удалось подключиться к базе данных", http.StatusInternalServerError)
         return
     }
-    defer db.Close() // Закрываем соединение с базой данных после завершения работы
+    defer db.Close() 
 
-    // Проверяем, существует ли логин в базе данных
+    
     var hashedPassword string
     err = db.QueryRow("SELECT password FROM users WHERE login = ?", req.Login).Scan(&hashedPassword)
     if err != nil {
@@ -52,13 +52,13 @@ func AuthHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // Сравниваем хешированный пароль с введенным паролем
+    // bcrypt hash
     if err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(req.Password)); err != nil {
         http.Error(w, "Неверный логин или пароль", http.StatusUnauthorized)
         return
     }
 
-    // Если логин и пароль верны, возвращаем сообщение об успешной аутентификации
+    
     response := map[string]string{"message": "Аутентификация успешна", "login": req.Login}
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(response)
@@ -71,7 +71,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // Подключаемся к базе данных SQLite
+    
     db, err := sql.Open("sqlite3", "./foo.db")
     if err != nil {
         http.Error(w, "Не удалось подключиться к базе данных", http.StatusInternalServerError)
@@ -79,7 +79,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
     }
     defer db.Close()
 
-    // Проверяем, существует ли уже пользователь с таким логином или email
+    
     var exists bool
     err = db.QueryRow("SELECT EXISTS(SELECT 1 FROM users WHERE login = ? OR email = ?)", req.Login, req.Email).Scan(&exists)
     if err != nil {
@@ -91,21 +91,21 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // Хешируем пароль
+    
     hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
     if err != nil {
         http.Error(w, "Ошибка при хешировании пароля", http.StatusInternalServerError)
         return
     }
 
-    // Вставляем нового пользователя в базу данных
+    
     _, err = db.Exec("INSERT INTO users (login, password, email) VALUES (?, ?, ?)", req.Login, hashedPassword, req.Email)
     if err != nil {
         http.Error(w, "Ошибка при регистрации пользователя", http.StatusInternalServerError)
         return
     }
 
-    // Возвращаем сообщение об успешной регистрации
+    
     response := map[string]string{"message": "Регистрация успешна", "login": req.Login}
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(response)

@@ -6,7 +6,7 @@ const EventList = () => {
 	return (
 		<div>
 			<h2>List of events:</h2>
-			{/* Здесь будет логика для отображения списка мероприятий */}
+			
 		</div>
 	)
 }

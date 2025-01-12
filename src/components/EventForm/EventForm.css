@@ -4,36 +4,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 40vh; /* Центрируем по вертикали */
+    min-height: 40vh;
 }
 
 .event-form {
     
     border: solid 1px #260915;
-    padding: 20px; /* Отступы внутри формы */
-    width: 300px; /* Ширина формы */
+    padding: 20px; 
+    width: 300px; 
 }
 
 .event-form h2 {
     color: #ffffff;
     font-size:18px;
-    font-weight:300; /* Отступ снизу заголовка */
-    text-align: center; /* Центрируем заголовок */
+    font-weight:300; 
+    text-align: center; 
 }
 
 .event-form input {
-    width: 93%; /* Ширина 100% */
-    padding: 10px; /* Отступы внутри полей */
-    margin: 10px 0; /* Отступы сверху и снизу */
+    width: 93%; 
+    padding: 10px; 
+    margin: 10px 0;
     border: solid 1px #260915;
     
 }
 
 .event-form input:focus {
   background-color: #260915;
-  /* Изменение фона при фокусе */
+  
   outline: none;
-  /* Убираем стандартный контур при фокусе */
+  
 }
 
 .event-form button {
@@ -48,5 +48,5 @@
 }
 
 .event-form button:hover {
-    background-color: #260915;/* Цвет фона кнопки при наведении */
+    background-color: #260915;
 }

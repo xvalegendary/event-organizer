@@ -5,13 +5,13 @@ import (
     "fmt"
     "net/http"
     "github.com/gorilla/mux"
-    "github.com/gorilla/handlers" // Для обработки CORS
-    _ "github.com/mattn/go-sqlite3" // Импортируем драйвер SQLite
+    "github.com/gorilla/handlers" 
+    _ "github.com/mattn/go-sqlite3" 
     "main/handler" 
 )
 
 func main() {
-    // Создаем или открываем базу данных
+    
     db, err := sql.Open("sqlite3", "./foo.db")
     if err != nil {
         fmt.Println("Ошибка при подключении к базе данных:", err)
@@ -19,7 +19,7 @@ func main() {
     }
     defer db.Close()
 
-    // Создаем таблицу пользователей, если она не существует
+    
     createTableSQL := `CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         login TEXT NOT NULL UNIQUE,
@@ -31,17 +31,17 @@ func main() {
         return
     }
 
-    // Создаем маршрутизатор
+    
     r := mux.NewRouter()
-    r.HandleFunc("/auth", handler.AuthHandler).Methods("POST") // Определяем маршрут для аутентификации
-    r.HandleFunc("/register", handler.RegisterHandler).Methods("POST") // Определяем маршрут для регистрации
+    r.HandleFunc("/auth", handler.AuthHandler).Methods("POST") 
+    r.HandleFunc("/register", handler.RegisterHandler).Methods("POST") 
 
-    // Настройка CORS
-    corsObj := handlers.AllowedOrigins([]string{"http://localhost:3000"}) // Разрешаем запросы с этого источника
-    corsHeaders := handlers.AllowedHeaders([]string{"Content-Type", "Authorization"}) // Разрешаем заголовки
-    corsMethods := handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"}) // Разрешаем методы
+   
+    corsObj := handlers.AllowedOrigins([]string{"http://localhost:3000"}) 
+    corsHeaders := handlers.AllowedHeaders([]string{"Content-Type", "Authorization"}) 
+    corsMethods := handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"}) 
 
-    // Запускаем HTTP-сервер на порту 8000 с CORS
+   
     fmt.Println("Сервер запущен на порту 8000")
     if err := http.ListenAndServe(":8000", handlers.CORS(corsObj, corsHeaders, corsMethods)(r)); err != nil {
         fmt.Println("Ошибка при запуске сервера:", err)
