@@ -1,10 +1,9 @@
 /* src/components/EventForm/EventForm.css */
 
-.event-form-container {
+.event-form-container .event-list-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 40vh;
 }
 
 .event-form {
@@ -49,4 +48,20 @@
 
 .event-form button:hover {
     background-color: #260915;
+}
+p{
+    color: aliceblue;
+    font-family: 'PixelFont', monospace;
+}
+h3{
+    color: aliceblue;
+    font-family: 'PixelFont', monospace;
+}
+.event-list-container{
+    border: solid 1px #260915;
+    min-height:20vh;
+}
+ul{
+    color: aliceblue;
+    font-family: 'PixelFont', monospace;
 }

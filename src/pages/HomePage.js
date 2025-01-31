@@ -10,7 +10,7 @@ const HomePage = () => {
 		<div className='home-page'>
 			<EventForm /> 
 			<EventList /> 
-			<EventManager />
+
 		</div>
 	)
 }
